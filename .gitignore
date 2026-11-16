@@ -1,0 +1,8 @@
+# Reports and exports (hold names from real environments)
+Report_*.html
+*.json
+Backups/
+
+# Blog post drafts (local only)
+blogpost*.html
+blogpost*.md
