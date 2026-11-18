@@ -5,7 +5,7 @@ See what a toolkit export holds, compare two exports (source and target), and pr
 | File | Version | Purpose |
 |---|---|---|
 | `viewer.html` | 0.2.0 | The viewer. Open it in a browser and drop export files on it |
-| `New-VIExportReport.ps1` | 0.1.0 | Writes the viewer with one or two exports embedded, as one HTML file |
+| `New-VIExportReport.ps1` | 0.1.1 | Writes the viewer with one or two exports embedded, as one HTML file |
 
 Supported exports in 0.2.0:
 

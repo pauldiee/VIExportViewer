@@ -38,16 +38,24 @@
 
 .NOTES
     Script   : New-VIExportReport.ps1
-    Version  : 0.1.0
+    Version  : 0.1.1
     Author   : Paul van Dieen
     Blog     : https://www.hollebollevsan.nl
     Requires : PowerShell 7.4+
     Tested   : Lab exports of VIFolderManager 1.2.0 and VITagManager 0.1.0,
-               2026-11-16
+               2026-11-16; VIFolderManager 1.3.0 and VITagManager 1.0.0
+               with viewer 0.2.0, 2026-11-18
 #>
 
 <#
 CHANGELOG
+    v0.1.1  2026-11-18  Paul van Dieen
+        - Fix: the '<' escape was a no-op (.Replace('<', '<')), so a name in
+          an export containing </script> could end the embed block and run
+          as page code. '<' now becomes the JSON escape u003c (backslash
+          built with [char]92), which the viewer's JSON.parse turns back.
+          Tested with a folder named evil</script><script>alert(1)</script>:
+          shown as text
     v0.1.0  2026-11-16  Paul van Dieen
         - Initial version: embeds one or two exports in viewer.html
 #>
@@ -67,7 +75,7 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
-$scriptVersion = '0.1.0'
+$scriptVersion = '0.1.1'
 $scriptAuthor  = 'Paul van Dieen'
 $scriptBlogUrl = 'https://www.hollebollevsan.nl'
 $scriptDir     = if ($PSScriptRoot) { $PSScriptRoot } else { (Get-Location).Path }
@@ -94,7 +102,11 @@ function ConvertTo-EmbeddedReport {
         $null = $raw | ConvertFrom-Json   # stop on a file that isn't JSON
         '{"fileName":' + (ConvertTo-Json -InputObject (Split-Path $p -Leaf) -Compress) + ',"data":' + $raw + '}'
     }
-    $json = ('[' + ($items -join ',') + ']').Replace('<', '<')
+    # Every '<' becomes the JSON escape backslash-u003c, which JSON.parse in
+    # the browser turns back into '<'. Built with [char]92 (backslash) on
+    # purpose: a literal backslash-u003c in this file was turned into '<' by
+    # an editor once, which silently disabled the escape (0.1.0).
+    $json = ('[' + ($items -join ',') + ']').Replace('<', ([string][char]92 + 'u003c'))
     return $html.Replace($marker, '<script type="application/json" id="vi-embedded">' + $json + '</script>')
 }
 
