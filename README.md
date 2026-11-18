@@ -4,15 +4,17 @@ See what a toolkit export holds, compare two exports (source and target), and pr
 
 | File | Version | Purpose |
 |---|---|---|
-| `viewer.html` | 0.1.0 | The viewer. Open it in a browser and drop export files on it |
+| `viewer.html` | 0.2.0 | The viewer. Open it in a browser and drop export files on it |
 | `New-VIExportReport.ps1` | 0.1.0 | Writes the viewer with one or two exports embedded, as one HTML file |
 
-Supported exports in 0.1.0:
+Supported exports in 0.2.0:
 
 | Toolkit | Overview | Compare |
 |---|---|---|
 | [VIFolderManager](https://github.com/pauldiee/VIFolderManager) 1.2.0+ | Folder tree per folder type, objects per folder, folder permissions | Folders missing or extra, permission differences, objects in another folder |
 | [VITagManager](https://github.com/pauldiee/VITagManager) 0.1.0+ | Tag categories with their tags, custom attributes, tags and attribute values per object | Categories (cardinality, object types), tags, attributes (target type), tag assignments, attribute values |
+
+The look follows the ITQ house style (Royal Blue, Orange, Light Blue; no logos), in light and dark mode and in print. The font is Titillium when it's installed, Calibri otherwise, so the file still needs nothing from the internet.
 
 Planned: VIRoleManager, StoragePolicyManager, VDSPortGroupManager and nsx-segment-migration.
 
@@ -24,7 +26,7 @@ Planned: VIRoleManager, StoragePolicyManager, VDSPortGroupManager and nsx-segmen
 
 **1. Open the viewer and drop exports on it.** Double-click `viewer.html`, then drop one or more export files on the page (or use **Open export files**). Click a file for its overview. With two exports of the same toolkit, **Compare** shows what's missing on the target, what's different, what's only on the target and what's the same. The older export is the source; **Swap** turns it round. **Hide items that are the same** keeps the list short.
 
-**2. `-Report` on the export.** VIFolderManager 1.3.0+ and VITagManager 0.2.0+ write an HTML report next to the JSON when you add `-Report`. They carry a copy of this viewer in `report/viewer.html`.
+**2. `-Report` on the export.** VIFolderManager 1.5.0+ and VITagManager 1.2.0+ write an HTML report next to the JSON when you add `-Report`. They carry a copy of this viewer in `report/viewer.html`.
 
 **3. A report of any export, or a compare report.**
 
