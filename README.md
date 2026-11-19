@@ -26,7 +26,7 @@ Planned: VIRoleManager, StoragePolicyManager, VDSPortGroupManager and nsx-segmen
 
 **1. Open the viewer and drop exports on it.** Double-click `viewer.html`, then drop one or more export files on the page (or use **Open export files**). Click a file for its overview. With two exports of the same toolkit, **Compare** shows what's missing on the target, what's different, what's only on the target and what's the same. The older export is the source; **Swap** turns it round. **Hide items that are the same** keeps the list short.
 
-**2. `-Report` on the export.** VIFolderManager 1.5.0+ and VITagManager 1.2.0+ write an HTML report next to the JSON when you add `-Report`. They carry a copy of this viewer in `report/viewer.html`.
+**2. `-Report` on the export.** VIFolderManager 1.6.0+ and VITagManager 1.3.0+ write an HTML report next to the JSON when you add `-Report`. They carry a copy of this viewer in `report/viewer.html`.
 
 **3. A report of any export, or a compare report.**
 
